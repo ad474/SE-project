@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/SEDB", { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect("mongodb+srv://ankita:test987@seproject-19wfq.mongodb.net/SEDB", { useUnifiedTopology: true, useNewUrlParser: true });
 
 const personSchema=new mongoose.Schema({
   username:String,
