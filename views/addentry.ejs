@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<h1>Add an entry</h1>
+<form class="" action="/<%=name%>/addthisentry" method="post">
+  <p>Date-</p>
+  <input type="date" name="date" value="">
+  <p>Time-</p>
+  <input type="time" name="time" value="">
+  <p>Title-</p>
+  <input type="text" name="title" value="">
+  <p>Contents-</p>
+  <input type="text" name="contents" value="">
+  <button type="submit" name="button">Done</button>
+</form>
+
+<!-- <script type = "text/javascript">
+         function setDate() {
+            return
+         }
+</script> -->
+
+<%- include('partials/footer') %>

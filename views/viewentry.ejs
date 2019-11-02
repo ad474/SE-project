@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<h1>Diary Entries</h1>
+<form class="" action="/<%=name%>/addentry" method="post">
+  <button type="submit" name="button">Add entry</button>
+</form>
+<form class="" action="/<%=name%>" method="post">
+  <button type="submit" name="button">Back to homepage</button>
+</form>
+<%if(flag){%>
+  <h3>You have no books</h3>
+<%}%>
+<%if(flag2){%>
+  <%entries.forEach(function(entry){%>
+    <div class="">
+      <h3><%=entry.date%>.<%=entry.month%>.<%=entry.year%></h3>
+      <h3><%=entry.time%></h3>
+      <h3><%=entry.title%></h3>
+      <h3><%=entry.contents%></h3>
+    </div>
+    <br>
+    <br>
+  <%});%>
+<%}%>
+
+<%- include('partials/footer') %>
