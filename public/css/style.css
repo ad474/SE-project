@@ -1,0 +1,90 @@
+body, html{
+  height: 100vh;
+  margin: 0 0;
+}
+
+.wholediv {
+  background-color: #E4E9FD;
+  background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+  min-height: 100vh;
+  font-family: 'helvetica neue';
+  height: 100vh;
+  margin: 0 0;
+  padding-top: 7.5%;
+
+}
+
+.bg{
+  background: rgba(16,94,98,0.85);
+  width: 60%;
+  text-align: center;
+  margin-left: auto;
+  margin-right:auto;
+  padding: 50px;
+  -webkit-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+-moz-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    /* -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+}
+
+.myButton{
+  background: none;
+  border: none;
+  padding: 0;
+  /*optional*/
+  font-size: 2rem;
+  font-family: 'Open Sans', sans-serif;
+  /*input has OS specific font-family*/
+  color: #caadde;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+/* @-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+} */
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+h1{
+  font-family: 'Dancing Script', cursive;
+  font-size: 5rem;
+  color: #f9f9f9;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+h3{
+  color: #b1e8ed;
+  margin-top: 0;
+  padding-top:20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+}
