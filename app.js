@@ -46,7 +46,7 @@ app.post("/login", function(req,res){
 });
 
 app.get("/login", function(req,res){
-  res.render('login');
+  res.render('login',{errorMessage:""});
 });
 
 app.post("/register",function(req,res){
@@ -87,7 +87,8 @@ app.post("/checkmail", function(req,res){
       if(person===null){
         //wrong username
         console.log("Wrong email");
-        res.redirect('login');
+        res.render('login',{errorMessage:"Wrong username/password entered"});
+        //res.redirect('login');
       }
       else{
         if(person.password===req.body.password){
@@ -97,7 +98,7 @@ app.post("/checkmail", function(req,res){
         }
         else{
           console.log("Wrong password");
-          res.render('login');
+          res.render('login',{errorMessage:"Wrong username/password entered"});
         }
       }
     }
