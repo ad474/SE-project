@@ -36,6 +36,33 @@ const entrySchema=new mongoose.Schema({
 
 const Entry= mongoose.model("Entry",entrySchema);
 
+const itemSchema={
+  name:String
+};
+
+const Item= mongoose.model("Item", itemSchema);
+
+const item1=new Item({
+  name:"Welcome to your to do list"
+});
+
+const item2= new Item({
+  name:"Hit the + button to add an item"
+});
+
+const item3=new Item({
+  name:"<-- Hit this to delete an item"
+});
+
+const defaultItems=[item1,item2,item3];
+
+const listSchema={
+  name: String,
+  items: [itemSchema]
+};
+
+const List=mongoose.model("List", listSchema);
+
 app.get("/", function(req,res){
   //home page
   res.render('index');
@@ -93,8 +120,9 @@ app.post("/checkmail", function(req,res){
       else{
         if(person.password===req.body.password){
           //when match
-          usname=req.body.username;
-          res.redirect("/"+req.body.username);
+          console.log(person._id);
+          // usname=req.body.username;
+          res.redirect("/"+person._id);
         }
         else{
           console.log("Wrong password");
@@ -110,7 +138,15 @@ app.post("/:username", function(req,res){
 });
 
 app.get("/:username", function(req,res){
-  res.render('homepage',{name:req.params.username});
+  Person.findOne({_id:req.params.username}, function(err,p){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('homepage',{id:req.params.username,name:p.name});
+    }
+  });
+  
 });
 
 app.post("/:username/diaryentry",function(req,res){
@@ -144,13 +180,6 @@ app.post('/:username/addentry',function(req,res){
 });
 
 app.post('/:username/addthisentry',function(req,res){
-  // year: String,
-  // month: String,
-  // date: String,
-  // time: String,
-  // title: String,
-  // contents: String,
-  // username: String
   const entry=new Entry({
     year:req.body.date.slice(0,4),
     month:req.body.date.slice(5,7),
@@ -162,6 +191,83 @@ app.post('/:username/addthisentry',function(req,res){
   });
   entry.save();
   res.redirect('/'+req.params.username+'/diaryentry');
+});
+
+app.post('/:username/todo',function(req,res){
+  res.redirect('/'+req.params.username+'/todo');
+});
+
+app.get('/:username/todo',function(req,res){
+  Item.find(function(err,results){
+    if(err){
+      console.log(err);
+    }
+    else{
+      if(results.length===0){
+        Item.insertMany(defaultItems,function(err){
+          if(err){
+            console.log(err);
+          }
+          else{
+            console.log("Successfully added default items");
+          }
+        });
+        res.redirect('/'+req.params.username+'/todo');
+      }
+      else{
+        res.render("list", {listTitle: "To do list", newListItems: results , id:req.params.username});
+      }
+    }
+  });
+});
+
+app.post("/:username/addtodo", function(req, res){
+
+  const itemName = req.body.newItem;
+  const listName = req.body.list;
+  const item=new Item({
+    name: itemName
+  });
+
+  if(listName==="To do list"){
+    item.save();
+    res.redirect('/'+req.params.username+'/todo');
+  }
+  // else{
+  //   List.findOne({name: listName},function(err,foundList){
+  //     console.log("Before push");
+  //     console.log(foundList.items);
+  //     foundList.items.push(item);
+  //     foundList.save();
+  //     console.log("After push");
+  //     console.log(foundList.items);
+  //     res.redirect("/"+listName);
+  //   });
+  // }
+
+});
+
+app.post("/:username/delete", function(req,res){
+  const checkID=req.body.check;
+  const listName=req.body.listName;
+  if(listName==="To do list"){
+    Item.findByIdAndRemove(checkID,function(err){
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.redirect('/'+req.params.username+'/todo');
+      }
+    });
+  }
+  // else{
+
+  //   List.findOneAndUpdate({name:listName},{$pull:{items:{_id:checkID}}},function(err,results){
+  //     if(!err){
+  //       res.redirect("/"+listName);
+  //     }
+  //   });
+  // }
 });
 
 app.listen(3000, function(){
