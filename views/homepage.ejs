@@ -1,10 +1,10 @@
 <%- include('partials/header') %>
 
 <h1>Hello <%=name%></h1>
-<form class="" action="/<%=name%>/diaryentry" method="post">
+<form class="" action="/<%=id%>/diaryentry" method="post">
   <button type="submit" name="button">Diary Entry</button>
 </form>
-<form class="" action="/todo" method="post">
+<form class="" action="/<%=id%>/todo" method="post">
   <button type="submit" name="button">To do list</button>
 </form>
 <form class="" action="/reminders" method="post">
