@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"><link href="https://fonts.googleapis.com/css?family=Dancing+Script|Open+Sans|Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/>
+
     <title></title>
     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
   <body>
     <div class="wholediv">
       <div class="bg">
-        <h1>Login</h1>
+        <h1 class="login">Login</h1>
+        <br>
         <div class="errorclass">
           <%=errorMessage%>
         </div>
@@ -17,10 +22,10 @@
             <br>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
             <br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="submit">Submit</button>
         </form>
         <form class="" action="/register" method="post">
-            <button type="submit" name="button">Register</button>
+            <button type="submit" name="button" class="register">Register</button>
         </form>
       </div>
 
