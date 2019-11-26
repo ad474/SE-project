@@ -10,6 +10,7 @@ const app= express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended:true}));
+
 app.use(express.static("public"));
 
 mongoose.connect("mongodb+srv://ankita:test987@seproject-19wfq.mongodb.net/SEDB", { useUnifiedTopology: true, useNewUrlParser: true });
@@ -62,6 +63,16 @@ const listSchema={
 };
 
 const List=mongoose.model("List", listSchema);
+
+const reminderSchema=new mongoose.Schema({
+  date: String,
+  time: String,
+  title: String,
+  contents: String,
+  username: String
+});
+
+const Reminder= mongoose.model("Reminder",reminderSchema);
 
 app.get("/", function(req,res){
   //home page
@@ -268,6 +279,66 @@ app.post("/:username/delete", function(req,res){
   //     }
   //   });
   // }
+});
+
+app.post('/:username/reminders',function(req,res){
+  res.redirect('/'+req.params.username+'/reminders');
+});
+
+app.get('/:username/reminders',function(req,res){
+  res.render('reminders',{id:req.params.username});
+});
+
+app.post('/:username/reminders/personal-reminders',function(req,res){
+  res.redirect('/'+req.params.username+'/reminders/personal-reminders');
+});
+
+app.get('/:username/reminders/personal-reminders',function(req,res){
+  res.render('preminders',{id:req.params.username});
+});
+
+app.post('/:username/reminders/personal-reminders/date',function(req,res){
+  //LOGIC FOR DISPLAYING REMINDERS HERE
+  var datee=""+req.body.date+"/11/2019";
+  Reminder.find({username:req.params.username, date:datee},function(err,entries){
+    if(err){
+      console.log(err);
+    }
+    else{
+      if(entries.length===0){
+        //if no books added yet
+        res.render('ppreminder',{id:req.params.username,date:req.body.date,flag:true, flag2:false, entries:[]});
+        //res.render('viewentry',{name:req.params.username,flag:true, flag2:false, entries:[]});
+      }
+      else{
+        //if books added already
+        res.render('ppreminder',{id:req.params.username,date:req.body.date,flag:false, flag2:true, entries:entries});
+        //res.render('viewentry',{name:req.params.username, flag:false, flag2:true, entries:entries});
+      }
+
+      //res.render('viewentry',{name:req.params.username});
+
+    }
+  });
+  //res.render('ppreminder',{id:req.params.username,date:req.body.date});
+  // console.log(req.body.reminder-date);
+});
+
+app.post('/:username/reminders/personal-reminders/add',function(req,res){
+  res.render('addreminder',{date:req.body.date,id:req.params.username});
+});
+
+app.post('/:username/reminders/personal-reminders/addreminder',function(req,res){
+  const reminder=new Reminder({
+    date:req.body.date,
+    time:req.body.time,
+    title:req.body.title,
+    contents:req.body.details,
+    username:req.params.username
+  });
+  console.log(reminder);
+  reminder.save();
+  res.redirect('/'+req.params.username+'/reminders/personal-reminders');
 });
 
 app.listen(3000, function(){

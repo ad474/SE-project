@@ -1,0 +1,18 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div>
+            <form action="/<%=id%>/reminders/personal-reminders/addreminder" method="post">
+                <p>Title</p>
+                <input type="text" name="title"/>
+                <p>Additional information</p>
+                <input type="text" placeholder="Optional" name="details"/>
+                <p>Time</p>
+                <input type="time" name="time" value="">
+                <button type="submit" name="date" value="<%=date%>/11/2019">Add</button>
+            </form>
+        </div>
+    </body>
+</html>
