@@ -171,8 +171,7 @@ h3{
   /* color: #ec9b3b; */
   color: black;
   size: 4rem;
-  margin-top:2%;
-  padding: 50px;
+  padding: 25px;
   -webkit-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 -moz-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
@@ -192,7 +191,7 @@ box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
   font-family: 'helvetica neue';
   height: 150vh;
   margin: 0 0;
-  padding-top: 7.5%;
+  padding-top: 5px;
 }
 
 .hello{
@@ -251,13 +250,38 @@ background: #ffe3ed;
 }
 
 .images_main{
-width:320px;
+width:400px;
 height:410px;
-padding-left:90px;
+padding-left:100px;
 padding-right:10px;
 margin-top: 140px;
 border:30;
 float: center;
 }
+
+input[type=text] {
+  border: 2px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 70%;
+  margin: 0 0;
+}
+
+input[type=email] {
+  border: 2px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 70%;
+  margin: 0 0;
+}
+
+input[type=password]{
+  border: 2px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 70%;
+  margin: 0 0;
+}
+
 
 
