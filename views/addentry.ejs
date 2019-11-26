@@ -1,5 +1,40 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+    <title></title>
+<style>
+  .wholediv{
+  background-color: #E4E9FD;
+  background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+  min-height: 100vh;
+  font-family: 'helvetica neue';
+  height: 100vh;
+  margin: 0 0;
+  padding-top: 7.5%;
+}
 
+.bg{
+  background: rgba(16,94,98,0.85);
+  width: 60%;
+  height: 60%;
+  text-align: center;
+  margin-left: auto;
+  margin-right:auto;
+  padding: 50px;
+  -webkit-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+-moz-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    /* -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+}
+</style>
+</head>
+<body>
 <div class="wholediv">
 <div class="bg">
 <h1>Add an entry</h1>
@@ -14,7 +49,6 @@
   <input type="text" name="contents" value="">
   <button type="submit" name="button">Done</button>
 </form>
-
 <!-- <script type = "text/javascript">
          function setDate() {
             return
@@ -22,4 +56,5 @@
 </script> -->
 </div>
 </div>
-<%- include('partials/footer') %>
+</body>
+</html>
