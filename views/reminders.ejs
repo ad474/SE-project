@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+
+<div>
+        <form class="" action="/<%=id%>/reminders/personal-reminders" method="post">
+            <button type="submit" name="button">Personal reminders</button>
+        </form>
+        <form class="" action="/<%=id%>/reminders/group-reminders" method="post">
+            <button type="submit" name="button">Group reminders</button>
+        </form>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="css/todostyle.css" type="text/css" /> -->
-    <style>
-      html {
+html {
     background-color: #E4E9FD;
-    background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+    background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
     min-height: 1000px;
     font-family: 'helvetica neue';
   }
@@ -197,64 +191,3 @@
     text-align: center;
   }
     
-    </style>
-  </head>
-  <body>
-      <div class="box" id="heading" style="color:blue;">
-          <h1> To do list</h1>
-        </div>
-      
-        <div class="box">
-      
-          <%newListItems.forEach(function(newListItem){%>
-            <form class="" action="/<%=id%>/delete" method="post">
-              <div class="item">
-                <input type="checkbox" name="check" value="<%=newListItem._id%>" onChange="this.form.submit()">
-                <p><%=  newListItem.name  %></p>
-              </div>
-              <input type="hidden" name="listName" value="<%=listTitle%>"></input>
-            </form>
-          <%})%>
-            <form class="item" action="/<%=id%>/addtodo" method="post">
-              <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-              <button type="submit" name="list" value="<%=listTitle%>">+</button>
-            </form>
-        </div>
-  </body>
-</html>
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-      <link rel="stylesheet" href="/Users/cosentus/Documents/GitHub/SE-project/public/css/todostyle.css">
-    <meta charset="utf-8">
-    <title></title>
-    
-  </head>
-  <body>
-
-<div class="box" id="heading">
-    <h1> To do list</h1>
-  </div>
-
-  <div class="box">
-
-    <%newListItems.forEach(function(newListItem){%>
-      <form class="" action="/<%=id%>/delete" method="post">
-        <div class="item">
-          <input type="checkbox" name="check" value="<%=newListItem._id%>" onChange="this.form.submit()">
-          <p><%=  newListItem.name  %></p>
-        </div>
-        <input type="hidden" name="listName" value="<%=listTitle%>"></input>
-      </form>
-    <%})%>
-      <form class="item" action="/<%=id%>/addtodo" method="post">
-        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="list" value="<%=listTitle%>">+</button>
-      </form>
-  </div>
-</body>
-</html> -->
