@@ -1,5 +1,8 @@
+<!DOCTYPE html>
 <html>
     <head>
+            <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
         <style>
             .wholediv2{
                 background-color:#fa697c;
@@ -26,22 +29,73 @@
                    -o-animation: fadein 2s; /* Opera < 12.1 */
                       animation: fadein 2s;
               }
-              /* body{
-                margin:0%;
-              }  */
+body{
+margin:0%;
+}
+.buttons1{
+  /* background: #396362; */
+  font-family: 'Shadows Into Light', cursive;
+  background:#f2eee5;
+  width: 180px;
+  padding: 4px 0;  
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
+  /* color: #f2eee5; */
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+&:hover {
+    cursor: pointer;
+  }
+  
+  &:after {
+    content: "";
+    display: block;
+    color:#f2eee5
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: darken(#f1c40f, 20%);
+    opacity: 0.4;
+    bottom: -30px;
+  } 
+  input[type=text]{
+  width: 70%;
+  margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+input[type=time]{
+    width: 70%;
+  margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px; 
+}
+.details{
+  /* font-family: 'Baskervville', serif; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: bold;
+  left: 30;
+  align: center; 
+}  
     </style>
 </head>
     <body>
         <div class="wholediv2">
             <div class="bg2">
             <form action="/<%=id%>/reminders/personal-reminders/addreminder" method="post">
-                <p>Title</p>
+                <p class="details">Title</p>
                 <input type="text" name="title"/>
-                <p>Additional information</p>
+                <p class="details">Additional information</p>
                 <input type="text" placeholder="Optional" name="details"/>
-                <p>Time</p>
+                <p class="details">Time</p>
                 <input type="time" name="time" value="">
-                <button type="submit" name="date" value="<%=date%>/11/2019">Add</button>
+                <button type="submit" name="date" value="<%=date%>/11/2019" class="buttons1">Add</button>
             </form>
         </div>
         </div>

@@ -259,28 +259,25 @@ border:30;
 float: center;
 }
 
-input[type=text] {
-  border: 2px;
-  border-radius: 4px;
-  box-sizing: border-box;
+input[type=text]{
   width: 70%;
   margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
 }
 
 input[type=email] {
-  border: 2px;
-  border-radius: 4px;
-  box-sizing: border-box;
   width: 70%;
   margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
 }
 
 input[type=password]{
-  border: 2px;
-  border-radius: 4px;
-  box-sizing: border-box;
   width: 70%;
   margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
 }
 
 
