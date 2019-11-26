@@ -22,7 +22,7 @@ body, html{
   /* background: rgba(16,94,98,0.85); */
   background:  #ffe3ed;
   width: 60%;
-  height: 60%;
+  height:65%;
   text-align: center;
   margin-left: auto;
   margin-right:auto;
@@ -138,7 +138,7 @@ h3{
   padding: 4px 0;  
   position: absolute;
   left: 50%;
-  top: 70%;
+  top: 75%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
   /* color: #f2eee5; */
