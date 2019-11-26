@@ -2,52 +2,135 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baskervville&display=swap" rel="stylesheet">
     <title></title>
 <style>
   .wholediv{
-  background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+  background-color:#fa697c;
+  background-image: -webkit-linear-gradient(20deg, #fa697c 65%, #d62196 35%);
   min-height: 100vh;
   font-family: 'helvetica neue';
   height: 100vh;
   margin: 0 0;
-  padding-top: 7.5%;
+  padding-top: 20px;
 }
-
+.bg{
+  background: #ffe3ed;
+  width: 65%;
+  margin-left: auto;
+  margin-right:auto;
+  margin-top: 3%;
+  padding: 1px;
+  -webkit-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+  -moz-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+  box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    /* -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+}
+body{
+  margin:0%;
+}
 .diary_entry{
+  margin-left: 3%;
   font-family: 'Dancing Script', cursive;
+  margin-top: 3%
 }
+.buttons1{
+  background: #ffe3ed;
+  width: 180px;
+  padding: 4px 0;  
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
+  color:#110133;
+  margin-left: 50%;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  font-size: 20px;
+  align: center;
+}
+.buttons2{
+  background: #ffe3ed;
+  width: 180px;
+  padding: 4px 0;  
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
+  color: #110133;
+  margin-left: 50%;
+  margin-top: 20px;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  font-size: 20px;
+  align: center;  
+}
+&:hover {
+    cursor: pointer;
+  }
+  
+  &:after {
+    content: "";
+    display: block;
+    color:#f2eee5;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: darken(#f1c40f, 20%);
+    opacity: 0.4;
+    bottom: -30px;
+  }
 
+.small{
+  font-size: 14px;
+  opacity: 0.5;
+  margin-top: 1px;
+  margin-left: 1px;
+}
+.big{
+  font-size: 28px;
+}
 </style>
 </head>
-<body>
+<body margin=0>
 <div class="wholediv">
-
-  <h1>Diary Entries</h1>
-<form class="" action="/<%=name%>/addentry" method="post">
-  <button type="submit" name="button">Add entry</button>
-</form>
-<form class="" action="/<%=name%>" method="post">
-  <button type="submit" name="button">Back to homepage</button>
-</form>
-<%if(flag){%>
+  <h1 style="text-align: center;font-family: 'Shadows Into Light', cursive; font-size: 50px;">Diary Entries</h1>
+  <div class="container">
+      <div class="row">
+        <div class="col">
+            <form class="" action="/<%=name%>/addentry" method="post">
+              <button type="submit" name="button" class="buttons1">Add entry</button>
+            </form>
+        </div>
+        <div class="col">
+            <form class="" action="/<%=name%>" method="post">
+              <button type="submit" name="button" class="buttons2">Back to homepage</button>
+            </form>
+        </div>
+      </div> 
+<div class="bg">
+      <%if(flag){%>
   <h3>You have no books</h3>
 <%}%>
 <%if(flag2){%>
   <%entries.forEach(function(entry){%>
     <div class="diary_entry">
     <div class="">
-      <h3><%=entry.date%>.<%=entry.month%>.<%=entry.year%></h3>
-      <h3><%=entry.time%></h3>
-      <h3><%=entry.title%></h3>
-      <h3><%=entry.contents%></h3>
+      <h3 class="small"><%=entry.date%>.<%=entry.month%>.<%=entry.year%></h3>
+      <h3 class="small"><%=entry.time%></h3>
+      <h3 class="big"><%=entry.title%></h3>
+      <h3 class="big"><%=entry.contents%></h3>
     </div>
     <br>
     <br>
   <%});%>
 <%}%>
+    </div>
 </div>
 </div>
 </body>

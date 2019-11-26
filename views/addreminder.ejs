@@ -1,9 +1,39 @@
 <html>
     <head>
-        
-    </head>
+        <style>
+            .wholediv2{
+                background-color:#fa697c;
+                background-image: -webkit-linear-gradient(20deg, #fa697c 65%, #d62196 35%);
+                min-height: 100vh;
+                font-family: 'helvetica neue';
+                height: 100vh;
+                margin: 0 0;
+                padding-top: 20px;
+              }
+              .bg2{
+                background: #ffe3ed;
+                width: 65%;
+                margin-left: auto;
+                margin-right:auto;
+                margin-top: 3%;
+                padding: 1px;
+                -webkit-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+                -moz-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+                box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
+                -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+                 -moz-animation: fadein 2s; /* Firefox < 16 */
+                  /* -ms-animation: fadein 2s; /* Internet Explorer */
+                   -o-animation: fadein 2s; /* Opera < 12.1 */
+                      animation: fadein 2s;
+              }
+              /* body{
+                margin:0%;
+              }  */
+    </style>
+</head>
     <body>
-        <div>
+        <div class="wholediv2">
+            <div class="bg2">
             <form action="/<%=id%>/reminders/personal-reminders/addreminder" method="post">
                 <p>Title</p>
                 <input type="text" name="title"/>
@@ -13,6 +43,7 @@
                 <input type="time" name="time" value="">
                 <button type="submit" name="date" value="<%=date%>/11/2019">Add</button>
             </form>
+        </div>
         </div>
     </body>
 </html>
