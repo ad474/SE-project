@@ -5,6 +5,7 @@ const express= require("express");
 const bodyParser= require("body-parser");
 const mongoose= require("mongoose");
 const encrypt = require("mongoose-encryption");
+var schedule = require('node-schedule');
 
 const app= express();
 app.set('view engine', 'ejs');
@@ -14,6 +15,12 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 mongoose.connect("mongodb+srv://ankita:test987@seproject-19wfq.mongodb.net/SEDB", { useUnifiedTopology: true, useNewUrlParser: true });
+
+var date = new Date(2019, 10, 26, 20, 36, 0);
+ 
+var j = schedule.scheduleJob(date, function(){
+  console.log('The world is going to end today.');
+});
 
 const personSchema=new mongoose.Schema({
   username:String,
@@ -69,7 +76,8 @@ const reminderSchema=new mongoose.Schema({
   time: String,
   title: String,
   contents: String,
-  username: String
+  username: String,
+  flag: String
 });
 
 const Reminder= mongoose.model("Reminder",reminderSchema);
@@ -133,7 +141,8 @@ app.post("/checkmail", function(req,res){
           //when match
           console.log(person._id);
           // usname=req.body.username;
-          res.redirect("/"+person._id);
+          //res.redirect("/"+person._id);
+          res.redirect("/"+person._id+"/sendreminder");
         }
         else{
           console.log("Wrong password");
@@ -142,6 +151,32 @@ app.post("/checkmail", function(req,res){
       }
     }
   });
+});
+
+app.get("/:username/sendreminder",function(req,res){
+//   var date = new Date(2019, 10, 26, 20, 36, 0);
+ 
+// var j = schedule.scheduleJob(date, function(){
+//   console.log('The world is going to end today.');
+// });
+  Reminder.find({username:req.params.username},function(err,rem){
+    if(rem.length===0){
+      console.log("bleh");
+    }
+    else{
+      rem.forEach(function(r){
+        var dates=r.date.split('/');
+        var times=r.time.split(':');
+        console.log(dates[2]+" "+dates[1]+" "+dates[0]+" "+times[0]+" "+times[1]);
+        var date = new Date(dates[2], dates[1]-1, dates[0], times[0], times[1], 0);
+        console.log(date);
+        var j = schedule.scheduleJob(date, function(){
+          console.log('The world is going to end today.');
+        });
+      });
+    }
+  });
+  res.redirect("/"+req.params.username);
 });
 
 app.post("/:username", function(req,res){
@@ -334,11 +369,16 @@ app.post('/:username/reminders/personal-reminders/addreminder',function(req,res)
     time:req.body.time,
     title:req.body.title,
     contents:req.body.details,
-    username:req.params.username
+    username:req.params.username,
+    flag:"false"
   });
   console.log(reminder);
   reminder.save();
   res.redirect('/'+req.params.username+'/reminders/personal-reminders');
+});
+
+app.post('/:username/reminders/group-reminders',function(req,res){
+  
 });
 
 app.listen(3000, function(){
