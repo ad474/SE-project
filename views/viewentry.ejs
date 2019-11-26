@@ -120,17 +120,16 @@ body{
 <%if(flag2){%>
   <%entries.forEach(function(entry){%>
     <div class="diary_entry">
-    <div class="">
       <h3 class="small"><%=entry.date%>.<%=entry.month%>.<%=entry.year%></h3>
       <h3 class="small"><%=entry.time%></h3>
       <h3 class="big"><%=entry.title%></h3>
       <h3 class="big"><%=entry.contents%></h3>
     </div>
-    <br>
-    <br>
+    <hr/>
   <%});%>
 <%}%>
-    </div>
+    
+</div>
 </div>
 </div>
 </body>
