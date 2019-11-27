@@ -3,20 +3,21 @@
   <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet"
     <title></title>
 <style>
   .wholediv{
   background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+  background-image: -webkit-linear-gradient(20deg, #fa697c 65%, #d62196 35%);
   min-height: 100vh;
   font-family: 'helvetica neue';
   height: 100vh;
   margin: 0 0;
   padding-top: 7.5%;
 }
-
 .bg{
-  background: rgba(16,94,98,0.85);
+  background:  #ffe3ed;
   width: 60%;
   height: 60%;
   text-align: center;
@@ -32,81 +33,76 @@ box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
      -o-animation: fadein 2s; /* Opera < 12.1 */
         animation: fadein 2s;
 }
-</style>
-<script type="text/javascript">
-  var message = document.querySelector('#message');
-  var finalTranscript = '';
-  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-  var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
-  var grammar = '#JSGF V1.0;'
-  var recognition = new SpeechRecognition();
-  var speechRecognitionList = new SpeechGrammarList();
-  speechRecognitionList.addFromString(grammar, 1);
-  recognition.grammars = speechRecognitionList;
-  recognition.lang = 'en-US';
-  recognition.interimResults = true;
-  recognition.maxAlternatives = 10;
-  recognition.continuous = true;
-  recognition.onresult = function(event) {
-    var interimTranscript = '';
-    for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
-      let transcript = event.results[i][0].transcript;
-      if (event.results[i].isFinal) {
-        finalTranscript += transcript;
-      } else {
-        interimTranscript += transcript;
-      }
-    }
-    document.querySelector('#voiceText').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
-
-  };
-/*
-  function myFunction() {
-    document.getElementById("myText").value = finalTranscript.toLowerCase();
-  };
-*/
-  recognition.onspeechend = function() {
-      recognition.stop();
-  };
-  recognition.onerror = function(event) {
-      message.textContent = 'Error occurred in recognition: ' + event.error;
+body{
+  margin: 0;
+}
+.details{
+  /* font-family: 'Baskervville', serif; */
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: bold;
+  margin: 10px;
+}
+input[type=text]{
+  width: 70%;
+  margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+.submit{
+  background: #f5b0cb;
+  width: 100px;
+  padding: 4px 0;
+  margin-top: 10px;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
+  color:#110133;
+  margin-left: 13%;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  font-size: 20px;
+  align: center;
+}
+&:hover {
+    cursor: pointer;
   }
-  document.querySelector('#btnGiveCommand').addEventListener('click', function(){
-      recognition.start();
-  });
-</script>
+
+  &:after {
+    content: "";
+    display: block;
+    color:#f2eee5
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: darken(#f1c40f, 20%);
+    opacity: 0.4;
+    bottom: -30px;
+  }
+</style>
 </head>
 <body>
-  <div class="wholediv">
-    <div class="bg">
-      <h1>Add an entry</h1>
-      <form class="" action="/<%=name%>/addthisentry" method="post">
-        <p>Date-</p>
-        <input type="date" name="date" value="">
-        <p>Time-</p>
-        <input type="time" name="time" value="">
-        <p>Title-</p>
-        <input type="text" name="title" value="">
-        <p>Contents-</p>
-        <input id = "voiceText" type="text" name="contents" value="">
-        <button type="submit" name="button">Done</button>
-
-
-
-      </form>
-      <button id="btnGiveCommand">Give Voice Command!</button>
-      <br><br>
-      <span id='message'></span>
-      <br><br>
-    </div>
-  </div>
-</body>
+<div class="wholediv">
+<div class="bg">
+<h1 style="text-align: center;font-family: 'Shadows Into Light', cursive">Add an entry</h1>
+<form class="" action="/<%=name%>/addthisentry" method="post">
+  <p class="details">Date-</p>
+  <input type="date" name="date" value="">
+  <p class="details">Time-</p>
+  <input type="time" name="time" value="">
+  <p class="details">Title-</p>
+  <input type="text" name="title" value="">
+  <p class="details">Contents-</p>
+  <input type="text" name="contents" value="">
+  <br></br>
+  <br></br>
+  <button type="submit" name="button" class="submit">Done</button>
+</form>
 <!-- <script type = "text/javascript">
          function setDate() {
             return
          }
 </script> -->
-
-
-
+</div>
+</div>
+</body>
 </html>

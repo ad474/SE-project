@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
         <style>
             body {
   position: relative;
@@ -8,8 +10,8 @@
   align-items: center;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
-  background: url("https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=183f2924ba5a8429441804609b2d4f61") no-repeat center / cover;
-  
+  /* background: url("https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=183f2924ba5a8429441804609b2d4f61") no-repeat center / cover; */
+  background-image: -webkit-linear-gradient(20deg, #fa697c 65%, #d62196 35%);
   &::before {
     content: "";
     position: absolute;
@@ -37,7 +39,8 @@
   height: 200px;
   padding: 20px;
   color: #fff;
-  background: #262626 url("https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=183f2924ba5a8429441804609b2d4f61") no-repeat center / cover;
+  /* background: #262626 url("https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=183f2924ba5a8429441804609b2d4f61") no-repeat center / cover; */
+  background: #262626 url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR_9jrHhhgzAccAx0c5AqJOMCyr3ArtH5MgF8Cnh99cgHDmJdiD") no-repeat center / cover;
   text-shadow: 0 2px 2px rgba(#000, 0.2);
   box-sizing: border-box;
   
@@ -110,10 +113,37 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.add1{
+  position: absolute;
+  top:0;
+  left:640;
+  padding-bottom: 20px;;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 40px;
+}
         </style>
     </head>
     <body>
-            <div class="calendar">
+        <h1 class="add1"> Add Reminder </h1>  
+      <p style="margin-right: 20%;"><i class="arrow left"></i></p>      
+      <div class="calendar">
                     <div class="calendar__picture">
                       <h2>26, Tuesday</h2>
                       <h3>November</h3>
@@ -135,7 +165,7 @@
                             <button type="submit" class="datebutton" name="date" value="1">
                                     1
                             </button>
-                            
+                           
                         </div>
                     </form>
                       <%for(var i=2;i<=30;i++){%>
@@ -148,8 +178,10 @@
                             </div>
                         </form>
                       <%}%>
+                    
                      
                     </div>
                   </div>
+                  <p style="margin-left: 20%;"><i class="arrow right"></i></p>
     </body>
 </html>

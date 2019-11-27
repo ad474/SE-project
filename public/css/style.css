@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap');
+
 body, html{
   height: 100vh;
   margin: 0 0;
@@ -5,7 +9,7 @@ body, html{
 
 .wholediv {
   background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+  background-image: -webkit-linear-gradient(20deg, #fa697c 65%, #d62196 35%);
   min-height: 100vh;
   font-family: 'helvetica neue';
   height: 100vh;
@@ -15,9 +19,10 @@ body, html{
 }
 
 .bg{
-  background: rgba(16,94,98,0.85);
+  /* background: rgba(16,94,98,0.85); */
+  background:  #ffe3ed;
   width: 60%;
-  height: 60%;
+  height:65%;
   text-align: center;
   margin-left: auto;
   margin-right:auto;
@@ -77,13 +82,15 @@ box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 .Senza{
   font-family: 'Dancing Script', cursive;
   font-size: 5rem;
-  color: #f9f9f9;
+  /* color: #f9f9f9; */
+  color: black;
   margin-top: 20px;
   margin-bottom: 80px;
 }
 
 h3{
-  color: #b1e8ed;
+  /* color: #b1e8ed; */
+  color: black;
   margin-top: 0;
   padding-top:20px;
   font-family: 'Playfair Display', serif;
@@ -91,13 +98,15 @@ h3{
 }
 
 .login{
-  color: #b1e8ed;
+  /* color: #b1e8ed; */
+  color: black;
    font-family: 'Playfair Display', serif;
   font-size: 4rem;
 }
 
 .submit{
-  background: #396362;
+  /* background: #396362; */
+  background:#f2eee5;
   width: 180px;
   padding: 4px 0;  
   position: absolute;
@@ -105,11 +114,13 @@ h3{
   top: 55%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
-  color: #f2eee5;
+  /* color: #f2eee5; */
+  color: black;
 }
 
 .register{
-  background: #396362;
+  /* background: #396362; */
+  background:#f2eee5;
   width: 180px;
   padding: 4px 0;  
   position: absolute;
@@ -117,18 +128,21 @@ h3{
   top: 62%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
-  color: #f2eee5
+  /* color: #f2eee5; */
+  color: black;
 }
 .register_submit{
-  background: #396362;
+  /* background: #396362; */
+  background:#f2eee5;
   width: 180px;
   padding: 4px 0;  
   position: absolute;
   left: 50%;
-  top: 70%;
+  top: 75%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
-  color: #f2eee5;
+  /* color: #f2eee5; */
+  color:black;
 }
  &:hover {
     cursor: pointer;
@@ -149,14 +163,15 @@ h3{
 
 
 .bg1{
-  background: rgba(16,94,98,0.85); 
+  /* background: rgba(16,94,98,0.85);  */
+  background:  #ffe3ed;
   text-align: center;
   margin-left: auto;
   margin-right:auto;
-  color: #ec9b3b;
+  /* color: #ec9b3b; */
+  color: black;
   size: 4rem;
-  margin-top:2%;
-  padding: 50px;
+  padding: 25px;
   -webkit-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 -moz-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
@@ -168,65 +183,102 @@ box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 }
 
 .wholediv1{
+  /* background-color: #E4E9FD; */
   background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+  /* background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%); */
+  background-image: -webkit-linear-gradient(20deg, #fa697c 65%, #d62196 35%);
   min-height: 100vh;
   font-family: 'helvetica neue';
   height: 150vh;
   margin: 0 0;
-  padding-top: 7.5%;
+  padding-top: 5px;
 }
 
 .hello{
-  font-family: 'Playfair Display', serif;
+  font-family: 'Shadows Into Light', cursive;
   font size: "20";
-  color: #ffffff;
+  color: black;
 }
 
 .diary_entry{
-background: #396362;
-  width: 180px;
+/* background: #396362; */
+background: #ffe3ed;
+  width: 200px;
   padding: 4px 0;  
   position: absolute;
   left: 50%;
-  top: 110%;
+  top: 15%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
-  color: #f2eee5;
+  /* color: #f2eee5; */
+  color: black;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 25px;
 }
 
 .to_do{
- background: #396362;
-  width: 180px;
+ /* background: #396362; */
+ background: #ffe3ed;
+  width: 200px;
   padding: 4px 0;  
   position: absolute;
   left: 50%;
-  top: 110%;
+  top: 15%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
-  color: #f2eee5
+  /* color: #f2eee5; */
+  color: black;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 25px;
 }
 
 .reminders{
-   background: #396362;
-  width: 180px;
+   /* background: #396362; */
+   background: #ffe3ed;
+  width: 200px;
   padding: 4px 0;  
   position: absolute;
   left: 50%;
-  top: 110%;
+  top: 15%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
-  color: #f2eee5
+  /* color: #f2eee5; */
+  color: black;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: 400;
+  font-size: 25px;
 }
 
 .images_main{
-width:320px;
+width:400px;
 height:410px;
-padding-left:90px;
+padding-left:100px;
 padding-right:10px;
-margin-top: 30px;
+margin-top: 140px;
 border:30;
 float: center;
 }
+
+input[type=text]{
+  width: 70%;
+  margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+input[type=email] {
+  width: 70%;
+  margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+input[type=password]{
+  width: 70%;
+  margin: 0 0;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
 
 

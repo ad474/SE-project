@@ -6,6 +6,7 @@ const bodyParser= require("body-parser");
 const mongoose= require("mongoose");
 const encrypt = require("mongoose-encryption");
 var schedule = require('node-schedule');
+const nodemailer= require("nodemailer");
 
 const app= express();
 app.set('view engine', 'ejs');
@@ -16,16 +17,17 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb+srv://ankita:test987@seproject-19wfq.mongodb.net/SEDB", { useUnifiedTopology: true, useNewUrlParser: true });
 
-var date = new Date(2019, 10, 26, 20, 36, 0);
+// var date = new Date(2019, 10, 26, 20, 36, 0);
  
-var j = schedule.scheduleJob(date, function(){
-  console.log('The world is going to end today.');
-});
+// var j = schedule.scheduleJob(date, function(){
+//   console.log('The world is going to end today.');
+// });
 
 const personSchema=new mongoose.Schema({
   username:String,
   password: String,
-  name: String
+  name: String,
+  email: String
 });
 
 personSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ['password']});
@@ -76,11 +78,12 @@ const reminderSchema=new mongoose.Schema({
   time: String,
   title: String,
   contents: String,
-  username: String,
-  flag: String
+  username: String
 });
 
 const Reminder= mongoose.model("Reminder",reminderSchema);
+
+var em="";
 
 app.get("/", function(req,res){
   //home page
@@ -142,6 +145,7 @@ app.post("/checkmail", function(req,res){
           console.log(person._id);
           // usname=req.body.username;
           //res.redirect("/"+person._id);
+          em=person.email;
           res.redirect("/"+person._id+"/sendreminder");
         }
         else{
@@ -154,11 +158,6 @@ app.post("/checkmail", function(req,res){
 });
 
 app.get("/:username/sendreminder",function(req,res){
-//   var date = new Date(2019, 10, 26, 20, 36, 0);
- 
-// var j = schedule.scheduleJob(date, function(){
-//   console.log('The world is going to end today.');
-// });
   Reminder.find({username:req.params.username},function(err,rem){
     if(rem.length===0){
       console.log("bleh");
@@ -172,12 +171,56 @@ app.get("/:username/sendreminder",function(req,res){
         console.log(date);
         var j = schedule.scheduleJob(date, function(){
           console.log('The world is going to end today.');
+          var sendTo="";
+          Person.findOne({_id:req.params.username},function(err,res){
+            sendTo=res.email;
+          });
+          sendMail(r);
         });
+        
       });
     }
   });
   res.redirect("/"+req.params.username);
 });
+
+function sendMail(r){
+  console.log("sendTo- "+r);
+  let transporter= nodemailer.createTransport({
+            service: 'gmail',
+            secure: false,
+            post:25,
+            auth:{
+              user:'senzacarta.vaa@gmail.com',
+              pass:process.env.PASS
+            },
+            tls:{
+              rejectUnauthorized: false
+            }
+          });
+          //var toSend="This is a test";
+          Person.findOne({email:em},function(err,p){
+            Reminder.find
+          });
+          var toSend="Reminder!\nYou have a reminder scheduled for this time.\nEvent name- "+r.title+"\nContents- "+r.contents;
+          //var toSend="Hey "+per[0].name+"! OTP for the reset of your password is "+rand+". Have a nice day!";
+          
+          let helperOptions= {
+            from: '"Senza Carta" <senzacarta.vaa@gmail.com',
+            to:em,
+            subject: 'Reminder',
+            text: toSend
+          };
+          transporter.sendMail(helperOptions, function(err,info){
+            if(err){
+              console.log(err);
+            }
+            else{
+              console.log("Sent  mail");
+              //render the OTP page and send OTP and id
+            }
+          });
+}
 
 app.post("/:username", function(req,res){
   res.redirect("/"+req.params.username);
@@ -369,16 +412,36 @@ app.post('/:username/reminders/personal-reminders/addreminder',function(req,res)
     time:req.body.time,
     title:req.body.title,
     contents:req.body.details,
-    username:req.params.username,
-    flag:"false"
+    username:req.params.username
   });
   console.log(reminder);
   reminder.save();
-  res.redirect('/'+req.params.username+'/reminders/personal-reminders');
+  res.redirect('/'+req.params.username+'/sendreminderr');
+  //res.redirect('/'+req.params.username+'/reminders/personal-reminders');
 });
 
-app.post('/:username/reminders/group-reminders',function(req,res){
-  
+app.get("/:username/sendreminderr",function(req,res){
+  Reminder.find({username:req.params.username},function(err,rem){
+    if(rem.length===0){
+      console.log("bleh");
+    }
+    else{
+      rem.forEach(function(r){
+        var dates=r.date.split('/');
+        var times=r.time.split(':');
+        var date = new Date(dates[2], dates[1]-1, dates[0], times[0], times[1], 0);
+        var j = schedule.scheduleJob(date, function(){
+          console.log('The world is going to end today. Die');
+          var sendTo="";
+          Person.findOne({_id:req.params.username},function(err,res){
+            sendTo=res.email;
+          });
+          sendMail(r);
+        });
+      });
+    }
+  });
+  res.redirect('/'+req.params.username+'/reminders/personal-reminders');
 });
 
 app.listen(3000, function(){

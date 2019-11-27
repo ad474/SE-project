@@ -6,7 +6,8 @@
     <style>
       html {
     background-color: #E4E9FD;
-    background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%);
+    /* background-image: -webkit-linear-gradient(20deg, #6bc5d2 65%, #d2fafb 35%); */
+    background-image: -webkit-linear-gradient(20deg,  #fa697c 65%, #d62196 35%);
     min-height: 1000px;
     font-family: 'helvetica neue';
   }
@@ -62,7 +63,7 @@
     margin-left: 20px;
   }
   
-  button {
+  .add {
     min-height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -102,7 +103,8 @@
   }
   html {
     background-color: #E4E9FD;
-    background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+    /* background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%); */
+    background-image: -webkit-linear-gradient(65deg, #fa697c 50%, #d62196 50%);
     min-height: 1000px;
     font-family: 'helvetica neue';
   }
@@ -158,7 +160,7 @@
     margin-left: 20px;
   }
   
-  button {
+  .add {
     min-height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -196,6 +198,21 @@
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
   }
+
+  body{
+    position:relative;
+  }
+
+  .homepage{
+    position:absolute;
+    top:0;
+    right:20px;
+    font-size:15px;
+    padding:8px 25px;
+    background-color:#A683E3;
+    border-radius: 5px;
+    color:white;
+  }
     
     </style>
   </head>
@@ -217,44 +234,11 @@
           <%})%>
             <form class="item" action="/<%=id%>/addtodo" method="post">
               <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-              <button type="submit" name="list" value="<%=listTitle%>">+</button>
+              <button class="add" type="submit" name="list" value="<%=listTitle%>">+</button>
             </form>
         </div>
+          <form action="/<%=id%>" method="post">
+            <button type="submit" class="homepage">Back to homepage</button>
+          </form>
   </body>
 </html>
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-      <link rel="stylesheet" href="/Users/cosentus/Documents/GitHub/SE-project/public/css/todostyle.css">
-    <meta charset="utf-8">
-    <title></title>
-    
-  </head>
-  <body>
-
-<div class="box" id="heading">
-    <h1> To do list</h1>
-  </div>
-
-  <div class="box">
-
-    <%newListItems.forEach(function(newListItem){%>
-      <form class="" action="/<%=id%>/delete" method="post">
-        <div class="item">
-          <input type="checkbox" name="check" value="<%=newListItem._id%>" onChange="this.form.submit()">
-          <p><%=  newListItem.name  %></p>
-        </div>
-        <input type="hidden" name="listName" value="<%=listTitle%>"></input>
-      </form>
-    <%})%>
-      <form class="item" action="/<%=id%>/addtodo" method="post">
-        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="list" value="<%=listTitle%>">+</button>
-      </form>
-  </div>
-</body>
-</html> -->
