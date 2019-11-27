@@ -102,6 +102,10 @@ app.post("/register",function(req,res){
   res.render('register');
 });
 
+app.post("/logout",function(req,res){
+  res.redirect('/login');
+});
+
 app.post("/newreg",function(req,res){
   const person=new Person({
     username: req.body.username,
@@ -202,7 +206,7 @@ function sendMail(r){
           Person.findOne({email:em},function(err,p){
             Reminder.find
           });
-          var toSend="Reminder!\nYou have a reminder scheduled for this time.\nEvent name- "+r.title+"\nContents- "+r.contents;
+          var toSend="Reminder!\nYou have a reminder scheduled for this time.\nEvent name- "+r.title+"\nDetails- "+r.contents;
           //var toSend="Hey "+per[0].name+"! OTP for the reset of your password is "+rand+". Have a nice day!";
           
           let helperOptions= {
@@ -421,6 +425,7 @@ app.post('/:username/reminders/personal-reminders/addreminder',function(req,res)
 });
 
 app.get("/:username/sendreminderr",function(req,res){
+  console.log("Going through this");
   Reminder.find({username:req.params.username},function(err,rem){
     if(rem.length===0){
       console.log("bleh");
@@ -443,6 +448,8 @@ app.get("/:username/sendreminderr",function(req,res){
   });
   res.redirect('/'+req.params.username+'/reminders/personal-reminders');
 });
+
+
 
 app.listen(3000, function(){
   console.log("Listening on port 3000");

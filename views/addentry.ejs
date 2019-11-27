@@ -14,17 +14,16 @@
   font-family: 'helvetica neue';
   height: 100vh;
   margin: 0 0;
-  padding-top: 7.5%;
+  padding-top: 5%;
 }
-
 .bg{
   background:  #ffe3ed;
   width: 60%;
-  height: 60%;
+  height: 80%;
   text-align: center;
   margin-left: auto;
   margin-right:auto;
-  padding: 50px;
+  padding: 20px;
   -webkit-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 -moz-box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
 box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
@@ -52,8 +51,8 @@ input[type=text]{
 .submit{
   background: #f5b0cb;
   width: 100px;
-  padding: 4px 0; 
-  margin-top: 10px; 
+  padding: 4px 0;
+  margin-top: 10px;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 3px;
   color:#110133;
@@ -66,7 +65,7 @@ input[type=text]{
 &:hover {
     cursor: pointer;
   }
-  
+
   &:after {
     content: "";
     display: block;
@@ -91,13 +90,17 @@ input[type=text]{
   <p class="details">Time-</p>
   <input type="time" name="time" value="">
   <p class="details">Title-</p>
-  <input type="text" name="title" value="">
+  <input type="text" name="title" style="height:30px;"value="" autocomplete="off">
   <p class="details">Contents-</p>
-  <input type="text" name="contents" value="">
+  <input id="voiceText" type="text" name="contents" style="height:70px;" value="">
   <br></br>
   <br></br>
   <button type="submit" name="button" class="submit">Done</button>
 </form>
+<button id='btnGiveCommand' action="/<%=name%>/addthisentry">Give Voice Command!</button>
+<br><br>
+<span id='message' action="/<%=name%>/addthisentry"></span>
+<br><br>
 <!-- <script type = "text/javascript">
          function setDate() {
             return
@@ -105,5 +108,51 @@ input[type=text]{
 </script> -->
 </div>
 </div>
+<script type="text/javascript">
+  var message = document.querySelector('#message');
+  var finalTranscript = '';
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+  var grammar = '#JSGF V1.0;'
+  var recognition = new window.SpeechRecognition();
+  //const recognition = new window.SpeechRecognition();
+  var speechRecognitionList = new SpeechGrammarList();
+  speechRecognitionList.addFromString(grammar, 1);
+  recognition.grammars = speechRecognitionList;
+  recognition.lang = 'en-US';
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 10;
+  recognition.continuous = true;
+  speechRecognitionList.addFromString(grammar, 1);
+  recognition.grammars = speechRecognitionList;
+  recognition.lang = 'en-US';
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 10;
+  recognition.continuous = true;
+  recognition.onresult = function(event) {
+  var interimTranscript = '';
+  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+    let transcript = event.results[i][0].transcript;
+    if (event.results[i].isFinal) {
+      finalTranscript += transcript;
+    } else {
+      interimTranscript += transcript;
+    }
+  }
+  //document.querySelector('#voiceText').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
+  document.getElementById('voiceText').value = document.getElementById('voiceText').value + interimTranscript
+
+};
+
+recognition.onspeechend = function() {
+    recognition.stop();
+};
+recognition.onerror = function(event) {
+    message.textContent = 'Error occurred in recognition: ' + event.error;
+}
+document.querySelector('#btnGiveCommand').addEventListener('click', function(){
+    recognition.start();
+});
+</script>
 </body>
 </html>

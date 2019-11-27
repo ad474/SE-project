@@ -11,12 +11,12 @@
     min-height: 1000px;
     font-family: 'helvetica neue';
   }
-  
+
   h1 {
     color: #fff;
     padding: 10px;
   }
-  
+
   .box {
     max-width: 400px;
     margin: 50px auto;
@@ -24,32 +24,32 @@
     border-radius: 5px;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
   }
-  
+
   #heading {
     background-color: #A683E3;
     text-align: center;
   }
-  
+
   .item {
     min-height: 70px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #F1F1F1;
   }
-  
+
   .item:last-child {
     border-bottom: 0;
   }
-  
+
   input:checked+p {
     text-decoration: line-through;
     text-decoration-color: #A683E3;
   }
-  
+
   input[type="checkbox"] {
     margin: 20px;
   }
-  
+
   p {
     margin: 0;
     padding: 20px;
@@ -57,12 +57,12 @@
     font-weight: 200;
     color: #00204a;
   }
-  
+
   form.item {
     text-align: center;
     margin-left: 20px;
   }
-  
+
   .add {
     min-height: 50px;
     width: 50px;
@@ -74,7 +74,7 @@
     padding-bottom: 6px;
     border-width: 0;
   }
-  
+
   input[type="text"] {
     text-align: center;
     height: 60px;
@@ -85,17 +85,17 @@
     font-weight: 200;
     width: 313px;
   }
-  
+
   input[type="text"]:focus {
     outline: none;
     box-shadow: inset 0 -3px 0 0 #A683E3;
   }
-  
+
   ::placeholder {
     color: grey;
     opacity: 1;
   }
-  
+
   footer {
     color: white;
     color: rgba(0, 0, 0, 0.5);
@@ -108,12 +108,12 @@
     min-height: 1000px;
     font-family: 'helvetica neue';
   }
-  
+
   h1 {
     color: #fff;
     padding: 10px;
   }
-  
+
   .box {
     max-width: 400px;
     margin: 50px auto;
@@ -121,32 +121,32 @@
     border-radius: 5px;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
   }
-  
+
   #heading {
     background-color: #A683E3;
     text-align: center;
   }
-  
+
   .item {
     min-height: 70px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #F1F1F1;
   }
-  
+
   .item:last-child {
     border-bottom: 0;
   }
-  
+
   input:checked+p {
     text-decoration: line-through;
     text-decoration-color: #A683E3;
   }
-  
+
   input[type="checkbox"] {
     margin: 20px;
   }
-  
+
   p {
     margin: 0;
     padding: 20px;
@@ -154,12 +154,12 @@
     font-weight: 200;
     color: #00204a;
   }
-  
+
   form.item {
     text-align: center;
     margin-left: 20px;
   }
-  
+
   .add {
     min-height: 50px;
     width: 50px;
@@ -171,7 +171,7 @@
     padding-bottom: 6px;
     border-width: 0;
   }
-  
+
   input[type="text"] {
     text-align: center;
     height: 60px;
@@ -182,17 +182,17 @@
     font-weight: 200;
     width: 313px;
   }
-  
+
   input[type="text"]:focus {
     outline: none;
     box-shadow: inset 0 -3px 0 0 #A683E3;
   }
-  
+
   ::placeholder {
     color: grey;
     opacity: 1;
   }
-  
+
   footer {
     color: white;
     color: rgba(0, 0, 0, 0.5);
@@ -213,16 +213,17 @@
     border-radius: 5px;
     color:white;
   }
-    
+
     </style>
+
   </head>
   <body>
       <div class="box" id="heading" style="color:blue;">
           <h1> To do list</h1>
         </div>
-      
+
         <div class="box">
-      
+
           <%newListItems.forEach(function(newListItem){%>
             <form class="" action="/<%=id%>/delete" method="post">
               <div class="item">
@@ -233,12 +234,63 @@
             </form>
           <%})%>
             <form class="item" action="/<%=id%>/addtodo" method="post">
-              <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+              <input id="voiceText" type="text" name="newItem" placeholder="New Item" autocomplete="off">
               <button class="add" type="submit" name="list" value="<%=listTitle%>">+</button>
             </form>
+            <button id='btnGiveCommand' action="/<%=id%>/addtodo">Give Voice Command!</button>
+            <br><br>
+            <span id='message' action="/<%=id%>/addtodo"></span>
+            <br><br>
         </div>
+
           <form action="/<%=id%>" method="post">
             <button type="submit" class="homepage">Back to homepage</button>
           </form>
+          <script type="text/javascript">
+            var message = document.querySelector('#message');
+            var finalTranscript = '';
+            var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+            var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+            var grammar = '#JSGF V1.0;'
+            var recognition = new window.SpeechRecognition();
+            //const recognition = new window.SpeechRecognition();
+            var speechRecognitionList = new SpeechGrammarList();
+            speechRecognitionList.addFromString(grammar, 1);
+            recognition.grammars = speechRecognitionList;
+            recognition.lang = 'en-US';
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 10;
+            recognition.continuous = true;
+            speechRecognitionList.addFromString(grammar, 1);
+            recognition.grammars = speechRecognitionList;
+            recognition.lang = 'en-US';
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 10;
+            recognition.continuous = true;
+            recognition.onresult = function(event) {
+            var interimTranscript = '';
+            for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+              let transcript = event.results[i][0].transcript;
+              if (event.results[i].isFinal) {
+                finalTranscript += transcript;
+              } else {
+                interimTranscript += transcript;
+              }
+            }
+            //document.querySelector('#voiceText').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
+            document.getElementById('voiceText').value = document.getElementById('voiceText').value + interimTranscript
+
+          };
+
+          recognition.onspeechend = function() {
+              recognition.stop();
+          };
+          recognition.onerror = function(event) {
+              message.textContent = 'Error occurred in recognition: ' + event.error;
+          }
+          document.querySelector('#btnGiveCommand').addEventListener('click', function(){
+              recognition.start();
+          });
+          </script>
   </body>
 </html>
