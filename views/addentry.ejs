@@ -33,28 +33,80 @@ box-shadow: 14px 10px 25px 10px rgba(95,103,105,0.84);
         animation: fadein 2s;
 }
 </style>
+<script type="text/javascript">
+  var message = document.querySelector('#message');
+  var finalTranscript = '';
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+  var grammar = '#JSGF V1.0;'
+  var recognition = new SpeechRecognition();
+  var speechRecognitionList = new SpeechGrammarList();
+  speechRecognitionList.addFromString(grammar, 1);
+  recognition.grammars = speechRecognitionList;
+  recognition.lang = 'en-US';
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 10;
+  recognition.continuous = true;
+  recognition.onresult = function(event) {
+    var interimTranscript = '';
+    for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+      let transcript = event.results[i][0].transcript;
+      if (event.results[i].isFinal) {
+        finalTranscript += transcript;
+      } else {
+        interimTranscript += transcript;
+      }
+    }
+    document.querySelector('#voiceText').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
+
+  };
+/*
+  function myFunction() {
+    document.getElementById("myText").value = finalTranscript.toLowerCase();
+  };
+*/
+  recognition.onspeechend = function() {
+      recognition.stop();
+  };
+  recognition.onerror = function(event) {
+      message.textContent = 'Error occurred in recognition: ' + event.error;
+  }
+  document.querySelector('#btnGiveCommand').addEventListener('click', function(){
+      recognition.start();
+  });
+</script>
 </head>
 <body>
-<div class="wholediv">
-<div class="bg">
-<h1>Add an entry</h1>
-<form class="" action="/<%=name%>/addthisentry" method="post">
-  <p>Date-</p>
-  <input type="date" name="date" value="">
-  <p>Time-</p>
-  <input type="time" name="time" value="">
-  <p>Title-</p>
-  <input type="text" name="title" value="">
-  <p>Contents-</p>
-  <input type="text" name="contents" value="">
-  <button type="submit" name="button">Done</button>
-</form>
+  <div class="wholediv">
+    <div class="bg">
+      <h1>Add an entry</h1>
+      <form class="" action="/<%=name%>/addthisentry" method="post">
+        <p>Date-</p>
+        <input type="date" name="date" value="">
+        <p>Time-</p>
+        <input type="time" name="time" value="">
+        <p>Title-</p>
+        <input type="text" name="title" value="">
+        <p>Contents-</p>
+        <input id = "voiceText" type="text" name="contents" value="">
+        <button type="submit" name="button">Done</button>
+
+
+
+      </form>
+      <button id="btnGiveCommand">Give Voice Command!</button>
+      <br><br>
+      <span id='message'></span>
+      <br><br>
+    </div>
+  </div>
+</body>
 <!-- <script type = "text/javascript">
          function setDate() {
             return
          }
 </script> -->
-</div>
-</div>
-</body>
+
+
+
 </html>
