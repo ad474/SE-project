@@ -90,9 +90,9 @@ input[type=time]{
             <div class="bg2">
             <form action="/<%=id%>/reminders/personal-reminders/addreminder" method="post">
                 <p class="details">Title</p>
-                <input type="text" name="title"/>
+                <input type="text" name="title" autocomplete="off"/>
                 <p class="details">Additional information</p>
-                <input type="text" placeholder="Optional" name="details"/>
+                <input type="text" placeholder="Optional" name="details" autocomplete="off"/>
                 <p class="details">Time</p>
                 <input type="time" name="time" value="">
                 <button type="submit" name="date" value="<%=date%>/11/2019" class="buttons1">Add</button>

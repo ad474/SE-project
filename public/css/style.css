@@ -280,5 +280,14 @@ input[type=password]{
   border-radius: 2px;
 }
 
-
+.logout{
+  position:absolute;
+  top:20px;
+  right:20px;
+  background-color: #caadde;
+  color: white;
+  border-radius: 10px;
+  font-size:15px;
+  padding:5px 20px;
+}
 
