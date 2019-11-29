@@ -326,18 +326,6 @@ app.post("/:username/addtodo", function(req, res){
     item.save();
     res.redirect('/'+req.params.username+'/todo');
   }
-  // else{
-  //   List.findOne({name: listName},function(err,foundList){
-  //     console.log("Before push");
-  //     console.log(foundList.items);
-  //     foundList.items.push(item);
-  //     foundList.save();
-  //     console.log("After push");
-  //     console.log(foundList.items);
-  //     res.redirect("/"+listName);
-  //   });
-  // }
-
 });
 
 app.post("/:username/delete", function(req,res){
@@ -353,14 +341,6 @@ app.post("/:username/delete", function(req,res){
       }
     });
   }
-  // else{
-
-  //   List.findOneAndUpdate({name:listName},{$pull:{items:{_id:checkID}}},function(err,results){
-  //     if(!err){
-  //       res.redirect("/"+listName);
-  //     }
-  //   });
-  // }
 });
 
 app.post('/:username/reminders',function(req,res){
